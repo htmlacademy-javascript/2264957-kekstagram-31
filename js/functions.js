@@ -1,37 +1,65 @@
 // Задание 1
+/*
+const checkSizeString = (string = '', maxSimbols = 1) => string.lenght <= maxSimbols;
 
-const checkSizeString = (string, simbol) => {
-  string = string.length;
-  if (string <= simbol) {
-    return true;
-  }
-  return false;
 
-}
-checkSizeString('');
+console.log(checkSizeString('проверяемая строка', 20));
+
+console.log(checkSizeString('проверяемая строка', 18));
+
+console.log(checkSizeString('проверяемая строка', 10));
+
+*/
 
 // Задание 2
+/*
+const checkPalidrom = (string = '') => {
 
-const checkPalidrom = (string) => {
+  string = string.replaceAll(' ', '').toUpperCase();
 
-let normalizeString = replaceAll(' ','').toUpperCase(string);
+  let reverseString = '';
 
-for (let reverseString = i - 1; i > 0; i--) {
-  at(string);
+  for (let i = string.lenght - 1; i >= 0; i--) {
+    reverseString += string[i];
+  }
+
+  return reverseString === string;
 }
 
-if (normalizeString === reverseString) {
-  return ('Palidrom');
-}
-}
-checkPalidrom('топот');
+console.log(checkPalidrom('топот'));
 
+console.log(checkPalidrom('ДовОд'));
+
+console.log(checkPalidrom('Кекс'));
+
+console.log(checkPalidrom('Лёша на полке клопа нашёл '));
+*/
 // Задание 3
 
-function toNumber(value) {
-  return +value;
+const extractNumber = (string) => {
+  let result = '';
+
+  for (let i = 0; i <= string.lenght - 1; i++) {
+    if(Number.isNaN(parseInt(string[i], 10)) === false) {
+      result += string[i];
+    }
+  }
+
+  return result === '' ? NaN : Number(result);
 }
 
-console.log(
-  toNumber('2023 год'));
+console.log(extractNumber('2023 год'));
 
+console.log(extractNumber('ECMAScript 2022'));
+
+console.log(extractNumber('1 кефир, 0.5 батона'));
+
+console.log(extractNumber('агент 007'));
+
+console.log(extractNumber('а я томат'));
+
+console.log(extractNumber(2023));
+
+console.log(extractNumber(-1));
+
+console.log(extractNumber(1.5));
