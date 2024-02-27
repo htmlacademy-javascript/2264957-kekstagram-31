@@ -16,6 +16,7 @@ const DESCRIPTIONS = [
   'Холод'
 ];
 
+
 const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -69,6 +70,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 const getPhotoID = createRandomIdFromRangeGenerator(1, 26);
 const generateCommentId = createRandomIdFromRangeGenerator(1, 26);
+const getNumberPhoto = createRandomIdFromRangeGenerator(1, 26);
 
 const createComments = () => ({
   id: generateCommentId(),
@@ -80,7 +82,7 @@ const createComments = () => ({
 
 const createPhotoDescription = () => ({
   id: getPhotoID(),
-  url: `photos/${ getPhotoID() }.jpg`,
+  url: `photos/${ getNumberPhoto() }.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
   comments: Array.from({length: getRandomInteger(0, 30)}, createComments)
