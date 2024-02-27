@@ -1,5 +1,5 @@
 // Задание 1
-
+/*
 const checkSizeString = (string = '', maxSimbols = 1) => string.length <= maxSimbols;
 
 
