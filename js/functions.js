@@ -65,7 +65,7 @@ console.log(extractNumber(-1));
 console.log(extractNumber(1.5));
 */
 
-// module5-task2
+// module5 task2
 
 const isMeetinginWorkingHours = (startWorkingTime, endWorkingTime, meetingStart, meetingTime) => {
 
