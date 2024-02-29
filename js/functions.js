@@ -84,27 +84,6 @@ const isMeetinginWorkingHours = (workingStartTime, workingEndTime, meetingStartT
 
 };
 
-
-/*
-function isMeetingWithinWorkingHours(startTime, endTime, meetingStart, meetingDuration) {
-  // Преобразуем строки времени в минуты для удобства вычислений
-  const startMinutes = timeStringToMinutes(startTime);
-  const endMinutes = timeStringToMinutes(endTime);
-  const meetingStartMinutes = timeStringToMinutes(meetingStart);
-
-  // Вычисляем конец встречи
-  const meetingEndMinutes = meetingStartMinutes + meetingDuration;
-
-  // Проверяем, укладывается ли встреча в рабочий день
-  return meetingStartMinutes >= startMinutes && meetingEndMinutes <= endMinutes;
-}
-
-function timeStringToMinutes(timeString) {
-  const [hours, minutes] = timeString.split(':').map(part => parseInt(part, 10));
-  return hours * 60 + minutes;
-}
-*/
-
 console.log(isMeetinginWorkingHours('08:00', '17:30', '14:00', 90)); // true
 console.log(isMeetinginWorkingHours('8:0', '10:0', '8:0', 120)); // true
 console.log(isMeetinginWorkingHours('08:00', '14:30', '14:00', 90)); // false
