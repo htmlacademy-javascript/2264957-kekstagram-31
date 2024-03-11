@@ -69,8 +69,8 @@ const createPhoto = () => ({
   comments: Array.from({length: getRandomInteger(0, 30)}, createComments)
 });
 
-const newObject = Array.from({length: OBJECT_COUNT}, createPhoto);
+const createPhotoImage = Array.from({length: OBJECT_COUNT}, createPhoto);
 
-console.log(newObject);
+console.log(createPhotoImage);
 
-export {createPhoto};
+export {createPhotoImage};
