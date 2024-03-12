@@ -1,9 +1,9 @@
-import { createPhotoImage } from './data.js';
+import { createPhoto } from './create-miniatures.js';
 
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const pictures = createPhotoImage();
+const pictures = createPhoto();
 const picturesFragment = document.createDocumentFragment();
 
 pictures.forEach(({url, description, likes, comments}) => {

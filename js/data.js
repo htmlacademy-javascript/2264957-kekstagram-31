@@ -47,30 +47,4 @@ const getData = () => {
   return{DESCRIPTIONS, COMMENTS, NAMES};
 };
 
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-const getPhotoID = createRandomIdFromRangeGenerator(1, 26);
-const generateCommentId = createRandomIdFromRangeGenerator(1, 300);
-const getNumberPhoto = createRandomIdFromRangeGenerator(1, 26);
-
-const createComments = () => ({
-  id: generateCommentId(),
-  avatar: `img/avatar-${ getRandomInteger(1, 6) }.svg`,
-  message: getRandomArrayElement(COMMENTS),
-  name: getRandomArrayElement(NAMES)
-});
-
-
-const createPhoto = () => ({
-  id: getPhotoID(),
-  url: `photos/${ getNumberPhoto() }.jpg`,
-  description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomInteger(15, 200),
-  comments: Array.from({length: getRandomInteger(0, 30)}, createComments)
-});
-
-const createPhotoImage = Array.from({length: OBJECT_COUNT}, createPhoto);
-
-console.log(createPhotoImage);
-
-export {createPhotoImage};
+export {getData};

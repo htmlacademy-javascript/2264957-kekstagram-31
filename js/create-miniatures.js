@@ -7,7 +7,7 @@ const {DESCRIPTIONS, COMMENTS, NAMES} = getData();
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 const getPhotoID = createRandomIdFromRangeGenerator(1, 26);
 const generateCommentId = createRandomIdFromRangeGenerator(1, 26);
-const getNumberPhoto = createRandomIdFromRangeGenerator(1, 26);
+const getNumberPhoto = createRandomIdFromRangeGenerator(1, 25);
 
 const createComments = () => ({
   id: generateCommentId(),
@@ -25,6 +25,6 @@ const createPhotoDescription = () => ({
   comments: Array.from({length: getRandomInteger(0, 30)}, createComments)
 });
 
-const newObject = Array.from({length: OBJECT_COUNT}, createPhotoDescription);
+const createPhoto = () => Array.from({length: OBJECT_COUNT}, createPhotoDescription);
 
-console.log(newObject);
+export {createPhoto};
