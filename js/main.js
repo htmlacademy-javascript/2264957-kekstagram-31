@@ -1,4 +1,4 @@
-
-import {renderPhotos} from './render-photos.js';
-
+import {
+  renderPhotos
+} from './render-photos.js';
 renderPhotos();

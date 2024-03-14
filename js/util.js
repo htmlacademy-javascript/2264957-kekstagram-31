@@ -5,6 +5,7 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+
 const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
 
@@ -21,5 +22,17 @@ const createRandomIdFromRangeGenerator = (min, max) => {
   };
 };
 
-export {getRandomInteger};
-export {createRandomIdFromRangeGenerator};
+const isEscapeKey = (evt) => {
+  evt.key = 'Escape';
+};
+
+const  = (evt) => {
+  evt.key = 'Enter';
+};
+
+export {
+  getRandomInteger,
+  createRandomIdFromRangeGenerator,
+  isEscapeKey,
+  isEnterKey
+};
