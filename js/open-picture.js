@@ -23,7 +23,6 @@ const closeBigpicture = () => {
   document.removeEventListener('keydown', onPictureEscapeKeyDown);
 };
 
-
 userModalClosePicture.addEventListener('click', () => {
   closeBigpicture();
 });
@@ -31,10 +30,10 @@ userModalClosePicture.addEventListener('click', () => {
 const renderPictureComments = (comments) => {
   commentsElement.forEach(({ avatar, message }) => {
     const comment = commentTemplate.cloneNode(true);
-    comment.querySelector('social__pictures').src = avatar;
-    comment.querySelector('social__text').textContent = message;
-    commentsShowCount.textContent = comments;
-    commentsTotalCount.textContent = comments;
+    comment.querySelector('.social__pictures').src = avatar;
+    comment.querySelector('.social__text').textContent = message;
+    commentsShowCount.textContent = comments.length;
+    commentsTotalCount.textContent = comments.length;
     commentSection.appendChild(comment);
   });
 };
@@ -50,6 +49,7 @@ const renderBigPicture = ({url, description, likes, comments }) => {
 
 const showBigpicture = ({url, description, likes, comments }) => {
   userModalPicture.classList.remove('hidden');
+  body.classList.add('modal-open');
   document.addEventListener('keydown', onPictureEscapeKeyDown);
   renderBigPicture ({url, description, likes, comments });
 };
