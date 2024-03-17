@@ -1,5 +1,5 @@
 import { createPhoto } from './create-miniatures.js';
-import { showBigpicture } from './open-picture.js';
+import { showBigPicture } from './open-picture.js';
 
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -22,7 +22,7 @@ const renderPhotos = () => {
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
     pictureElement.addEventListener('click', () => {
-      showBigpicture({url, description, likes, comments });
+      showBigPicture({url, description, likes, comments });
     });
 
     picturesFragment.append(pictureElement);

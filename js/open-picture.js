@@ -17,15 +17,12 @@ const onPictureEscapeKeyDown = (evt) => {
   }
 };
 
-const closeBigpicture = () => {
+const closeBigPicture = () => {
   userModalPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPictureEscapeKeyDown);
 };
 
-userModalClosePicture.addEventListener('click', () => {
-  closeBigpicture();
-});
 
 const renderPictureComments = (comments) => {
   commentsElement.forEach(({ avatar, message }) => {
@@ -47,11 +44,14 @@ const renderBigPicture = ({url, description, likes, comments }) => {
   renderPictureComments(comments);
 };
 
-const showBigpicture = ({url, description, likes, comments }) => {
+const showBigPicture = ({url, description, likes, comments }) => {
   userModalPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPictureEscapeKeyDown);
   renderBigPicture ({url, description, likes, comments });
+  userModalClosePicture.addEventListener('click', () => {
+    closeBigPicture();
+  });
 };
 
-export { showBigpicture, closeBigpicture };
+export { showBigPicture, closeBigPicture };
