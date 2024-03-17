@@ -1,14 +1,15 @@
-import { createComments } from './create-miniatures.js';
+
 import { isEscapeKey } from './util.js';
 
 const userModalPicture = document.querySelector('.big-picture');
 const userModalClosePicture = userModalPicture.querySelector('.big-picture__cancel');
 const body = document.querySelector('body');
-const commentTemplate = userModalPicture.querySelector('social__comment');
+const commentTemplate = userModalPicture.querySelector('.social__comment');
 const commentSection = userModalPicture.querySelector('.social__comments');
 const commentsShowCount = userModalPicture.querySelector('.social__comment-shown-count');
 const commentsTotalCount = userModalPicture.querySelector('.social__comment-total-count');
-const commentsElement = createComments();
+const commentsLoad = userModalPicture.querySelector('.comments-loader');
+
 
 const onPictureEscapeKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -25,9 +26,9 @@ const closeBigPicture = () => {
 
 
 const renderPictureComments = (comments) => {
-  commentsElement.forEach(({ avatar, message }) => {
+  comments.forEach(({ avatar, message }) => {
     const comment = commentTemplate.cloneNode(true);
-    comment.querySelector('.social__pictures').src = avatar;
+    comment.querySelector('.social__picture').src = avatar;
     comment.querySelector('.social__text').textContent = message;
     commentsShowCount.textContent = comments.length;
     commentsTotalCount.textContent = comments.length;
@@ -48,7 +49,11 @@ const showBigPicture = ({url, description, likes, comments }) => {
   userModalPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPictureEscapeKeyDown);
+  commentSection.innerHTML = '';
   renderBigPicture ({url, description, likes, comments });
+  commentsShowCount.classList.add('hidden');
+  commentsTotalCount.classList.add('hidden');
+  commentsLoad.classList.add('hidden');
   userModalClosePicture.addEventListener('click', () => {
     closeBigPicture();
   });
