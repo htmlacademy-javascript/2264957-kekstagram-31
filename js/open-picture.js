@@ -9,6 +9,9 @@ const commentSection = userModalPicture.querySelector('.social__comments');
 const commentsShowCount = userModalPicture.querySelector('.social__comment-shown-count');
 const commentsTotalCount = userModalPicture.querySelector('.social__comment-total-count');
 const commentsLoad = userModalPicture.querySelector('.comments-loader');
+const MIN_SHOW_COMMENTS = 5;
+let startCommentsCount = 0;
+let commentsForRender = [];
 
 
 const onPictureEscapeKeyDown = (evt) => {
@@ -25,15 +28,30 @@ const closeBigPicture = () => {
 };
 
 
-const renderPictureComments = (comments) => {
+const renderPictureComments = () => {
+  const comments = commentsForRender.slice(startCommentsCount, startCommentsCount + MIN_SHOW_COMMENTS);
+  const commentsFragment = document.createDocumentFragment();
   comments.forEach(({ avatar, message }) => {
     const comment = commentTemplate.cloneNode(true);
     comment.querySelector('.social__picture').src = avatar;
     comment.querySelector('.social__text').textContent = message;
     commentsShowCount.textContent = comments.length;
     commentsTotalCount.textContent = comments.length;
-    commentSection.appendChild(comment);
+    commentsFragment.append(comment);
   });
+  commentSection.append(commentsFragment);
+  startCommentsCount += MIN_SHOW_COMMENTS;
+  commentsShowCount.textContent = startCommentsCount;
+  if (commentsForRender.length === commentSection.children.length) {
+    commentsShowCount.textContent = commentSection.children.length;
+    commentsLoad.classList.add('hidden');
+  }
+};
+
+const loadNextComments = (commentsArrey) => {
+  commentsForRender = commentsArrey;
+  renderPictureComments();
+  commentsLoad.addEventListener('click', renderPictureComments());
 };
 
 const renderBigPicture = ({url, description, likes, comments }) => {
@@ -51,9 +69,13 @@ const showBigPicture = ({url, description, likes, comments }) => {
   document.addEventListener('keydown', onPictureEscapeKeyDown);
   commentSection.innerHTML = '';
   renderBigPicture ({url, description, likes, comments });
-  commentsShowCount.classList.add('hidden');
-  commentsTotalCount.classList.add('hidden');
-  commentsLoad.classList.add('hidden');
+  if (comments.length < MIN_SHOW_COMMENTS) {
+    commentsShowCount.textContent = comments.length;
+  } else {
+    commentsShowCount.textContent = MIN_SHOW_COMMENTS;
+  }
+  commentsTotalCount.textContent = comments.length;
+  loadNextComments(comments);
   userModalClosePicture.addEventListener('click', () => {
     closeBigPicture();
   });
