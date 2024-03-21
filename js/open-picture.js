@@ -13,7 +13,6 @@ const MIN_SHOW_COMMENTS = 5;
 let startCommentsCount = 0;
 let commentsForRender = [];
 
-
 const onPictureEscapeKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -27,7 +26,6 @@ const closeBigPicture = () => {
   document.removeEventListener('keydown', onPictureEscapeKeyDown);
 };
 
-
 const renderPictureComments = () => {
   const comments = commentsForRender.slice(startCommentsCount, startCommentsCount + MIN_SHOW_COMMENTS);
   const commentsFragment = document.createDocumentFragment();
@@ -40,6 +38,11 @@ const renderPictureComments = () => {
     commentsFragment.append(comment);
   });
   commentSection.append(commentsFragment);
+  if (comments.length < MIN_SHOW_COMMENTS) {
+    commentsShowCount.textContent = comments.length;
+  } else {
+    commentsShowCount.textContent = MIN_SHOW_COMMENTS;
+  }
   startCommentsCount += MIN_SHOW_COMMENTS;
   commentsShowCount.textContent = startCommentsCount;
   if (commentsForRender.length === commentSection.children.length) {
@@ -69,11 +72,6 @@ const showBigPicture = ({url, description, likes, comments }) => {
   document.addEventListener('keydown', onPictureEscapeKeyDown);
   commentSection.innerHTML = '';
   renderBigPicture ({url, description, likes, comments });
-  if (comments.length < MIN_SHOW_COMMENTS) {
-    commentsShowCount.textContent = comments.length;
-  } else {
-    commentsShowCount.textContent = MIN_SHOW_COMMENTS;
-  }
   commentsTotalCount.textContent = comments.length;
   loadNextComments(comments);
   userModalClosePicture.addEventListener('click', () => {
