@@ -48,13 +48,13 @@ const renderPictureComments = () => {
     commentsFragment.append(comment);
   });
   commentSection.append(commentsFragment);
-  // if (comments.length < MIN_SHOW_COMMENTS) {
-  //   commentsShowCount.textContent = comments.length;
+  // if (commentsForRender.length < MIN_SHOW_COMMENTS) {
+  //   commentsShowCount.textContent = commentsForRender.length;
   // } else {
   //   commentsShowCount.textContent = MIN_SHOW_COMMENTS;
   // }
-  // startCommentsCount += MIN_SHOW_COMMENTS;
   // commentsShowCount.textContent = startCommentsCount;
+
   if (commentsForRender.length === commentSection.children.length) {
 
     commentsLoad.classList.add('hidden');
@@ -75,10 +75,10 @@ const renderBigPicture = ({url, description, likes, comments }) => {
   userModalPicture.querySelector('.social__caption').textContent = description;
   commentsTotalCount.textContent = comments.length;
   if (comments.length > MIN_SHOW_COMMENTS) {
-  commentsLoad.addEventListener('click', () => {
-    renderPictureComments();
-  });
-};
+    commentsLoad.addEventListener('click', () => {
+      renderPictureComments();
+    });
+  }
   currentComments = comments;
   renderPictureComments();
 };
