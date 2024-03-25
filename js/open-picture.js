@@ -4,7 +4,7 @@ import { isEscapeKey } from './util.js';
 const userModalPicture = document.querySelector('.big-picture');
 const userModalClosePicture = userModalPicture.querySelector('.big-picture__cancel');
 const body = document.querySelector('body');
-const commentTemplate = userModalPicture.querySelector('.social__comment');
+const commentTemplate = document.querySelector('#social-comment').content;
 const commentSection = userModalPicture.querySelector('.social__comments');
 const commentsCounts = userModalPicture.querySelector('social__comment-count');
 const commentsShowCount = userModalPicture.querySelector('.social__comment-shown-count');
@@ -19,6 +19,7 @@ let commentsForRender = [];
 const clearComments = () => {
   startCommentsCount = 0;
   commentSection.innerHTML = '';
+  commentsForRender = [];
 };
 
 const onPictureEscapeKeyDown = (evt) => {
@@ -37,11 +38,11 @@ const closeBigPicture = () => {
 
 const renderPictureComments = () => {
   commentsForRender = currentComments.slice(startCommentsCount, startCommentsCount + MIN_SHOW_COMMENTS);
-  console.log(commentsForRender);
   startCommentsCount += MIN_SHOW_COMMENTS;
+
   const commentsFragment = document.createDocumentFragment();
-  commentsShowCount.textContent = commentsForRender.length;
   commentsForRender.forEach(({ avatar, message }) => {
+    console.log(commentTemplate);
     const comment = commentTemplate.cloneNode(true);
     comment.querySelector('.social__picture').src = avatar;
     comment.querySelector('.social__text').textContent = message;
@@ -54,8 +55,8 @@ const renderPictureComments = () => {
   //   commentsShowCount.textContent = MIN_SHOW_COMMENTS;
   // }
   // commentsShowCount.textContent = startCommentsCount;
-
-  if (commentsForRender.length === commentSection.children.length) {
+  commentsShowCount.textContent = commentSection.children.length;
+  if (currentComments.length === commentSection.children.length) {
 
     commentsLoad.classList.add('hidden');
   }
