@@ -6,7 +6,6 @@ const userModalClosePicture = userModalPicture.querySelector('.big-picture__canc
 const body = document.querySelector('body');
 const commentTemplate = document.querySelector('#social-comment').content;
 const commentSection = userModalPicture.querySelector('.social__comments');
-const commentsCounts = userModalPicture.querySelector('social__comment-count');
 const commentsShowCount = userModalPicture.querySelector('.social__comment-shown-count');
 const commentsTotalCount = userModalPicture.querySelector('.social__comment-total-count');
 const commentsLoad = userModalPicture.querySelector('.comments-loader');
@@ -29,44 +28,23 @@ const onPictureEscapeKeyDown = (evt) => {
   }
 };
 
-const closeBigPicture = () => {
-  clearComments();
-  userModalPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onPictureEscapeKeyDown);
-};
-
 const renderPictureComments = () => {
   commentsForRender = currentComments.slice(startCommentsCount, startCommentsCount + MIN_SHOW_COMMENTS);
   startCommentsCount += MIN_SHOW_COMMENTS;
-
   const commentsFragment = document.createDocumentFragment();
   commentsForRender.forEach(({ avatar, message }) => {
-    console.log(commentTemplate);
     const comment = commentTemplate.cloneNode(true);
     comment.querySelector('.social__picture').src = avatar;
     comment.querySelector('.social__text').textContent = message;
     commentsFragment.append(comment);
   });
   commentSection.append(commentsFragment);
-  // if (commentsForRender.length < MIN_SHOW_COMMENTS) {
-  //   commentsShowCount.textContent = commentsForRender.length;
-  // } else {
-  //   commentsShowCount.textContent = MIN_SHOW_COMMENTS;
-  // }
-  // commentsShowCount.textContent = startCommentsCount;
   commentsShowCount.textContent = commentSection.children.length;
   if (currentComments.length === commentSection.children.length) {
-
     commentsLoad.classList.add('hidden');
   }
 };
 
-// const loadNextComments = (commentsArrey) => {
-//   commentsForRender = commentsArrey;
-//   renderPictureComments();
-//   commentsLoad.addEventListener('click', renderPictureComments());
-// };
 
 const renderBigPicture = ({url, description, likes, comments }) => {
   userModalPicture.querySelector('.big-picture__img').querySelector('img').src = url;
@@ -76,12 +54,19 @@ const renderBigPicture = ({url, description, likes, comments }) => {
   userModalPicture.querySelector('.social__caption').textContent = description;
   commentsTotalCount.textContent = comments.length;
   if (comments.length > MIN_SHOW_COMMENTS) {
-    commentsLoad.addEventListener('click', () => {
-      renderPictureComments();
-    });
+    commentsLoad.addEventListener('click', renderPictureComments);
   }
   currentComments = comments;
   renderPictureComments();
+};
+
+const closeBigPicture = () => {
+  clearComments();
+  userModalPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onPictureEscapeKeyDown);
+  commentsLoad.classList.remove('hidden');
+  commentsLoad.removeEventListener('click', renderPictureComments);
 };
 
 const showBigPicture = ({url, description, likes, comments }) => {
@@ -89,10 +74,8 @@ const showBigPicture = ({url, description, likes, comments }) => {
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPictureEscapeKeyDown);
   renderBigPicture ({url, description, likes, comments });
-  //loadNextComments(comments);
-  userModalClosePicture.addEventListener('click', () => {
-    closeBigPicture();
-  });
+  userModalClosePicture.addEventListener('click', closeBigPicture);
 };
+
 
 export { showBigPicture, closeBigPicture };
