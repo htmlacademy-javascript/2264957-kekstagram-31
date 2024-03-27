@@ -78,4 +78,4 @@ const showBigPicture = ({url, description, likes, comments }) => {
 };
 
 
-export { showBigPicture, closeBigPicture };
+export { showBigPicture, closeBigPicture, body };
