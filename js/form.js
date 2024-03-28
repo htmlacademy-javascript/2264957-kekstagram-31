@@ -52,5 +52,3 @@ export const loadImage = () => {
   });
 };
 
-
-export { uploadForm };
