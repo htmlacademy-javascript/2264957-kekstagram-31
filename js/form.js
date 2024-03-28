@@ -1,6 +1,7 @@
 import { isEscapeKey } from './util';
 import { body } from './open-picture';
 import { onFormSubmit } from './validate';
+import {onSmallerBtnclick, onBiggerBtnBtnclick} from './edit-photo.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 
@@ -10,6 +11,9 @@ const photoEditorResetBtn = photoEditorForm.querySelector('#upload-cancel');
 
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
+
+const smallerBtn = uploadForm.querySelector('.scale__control--smaller');
+const biggerBtn = uploadForm.querySelector('.scale__control--bigger');
 
 
 const onPhotoEditorResetBtnClick = () => closePhotoEditor();
@@ -32,6 +36,8 @@ function closePhotoEditor () {
   uploadForm.removeEventListener('submit', onFormSubmit);
   document.removeEventListener('keydown', onDocumentKeydown);
   photoEditorResetBtn.addEventListener('click', onPhotoEditorResetBtnClick);
+  smallerBtn.removeEventListener('click', onSmallerBtnclick);
+  biggerBtn.removeEventListener('click', onBiggerBtnBtnclick);
   upLoadFileControl.value = '';
 }
 
@@ -41,6 +47,10 @@ export const loadImage = () => {
     body.classList.add('modal-open');
     uploadForm.addEventListener('submit', onFormSubmit);
     photoEditorResetBtn.addEventListener('click', onPhotoEditorResetBtnClick);
+    smallerBtn.addEventListener('click', onSmallerBtnclick);
+    biggerBtn.addEventListener('click', onBiggerBtnBtnclick);
   });
 };
 
+
+export { uploadForm };
