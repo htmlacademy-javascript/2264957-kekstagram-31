@@ -47,4 +47,5 @@ const getData = () => {
   return{DESCRIPTIONS, COMMENTS, NAMES};
 };
 
+
 export {getData};
