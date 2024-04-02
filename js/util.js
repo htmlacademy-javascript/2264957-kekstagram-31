@@ -1,3 +1,16 @@
+import {
+  body
+} from './open-picture';
+
+const errorSendTemplate = document.querySelector('#error').content.querySelector('.error');
+const errorSendFragment = document.createDocumentFragment();
+const errorGetTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
+const errorGetFragment = document.createDocumentFragment();
+const successGetTemplate = document.querySelector('#success').content.querySelector('.success');
+const successGetFragment = document.createDocumentFragment();
+const ALERT_SHOWTIME = 5000;
+let photos = [];
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -22,10 +35,45 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 };
 
 const isEscapeKey = (evt) => {
- return evt.key === 'Escape'};
+  return evt.key === 'Escape'
+};
+
+const savePhotos = (photosArrey) => {
+  photos = photosArrey;
+};
+
+const showAlertSend = () => {
+  const error = errorSendTemplate.cloneNode(true);
+
+  errorSendFragment.append(error);
+  body.append(errorSendFragment);
+};
+
+const showAlertGet = () => {
+  const error = errorGetTemplate.cloneNode(true);
+
+  errorGetFragment.append(error);
+  body.append(errorSendFragment);
+
+  setTimeout(() => {
+    error.remove();
+  }, ALERT_SHOWTIME);
+};
+
+const showSuccessSend = () => {
+  const success = successGetTemplate.cloneNode(true);
+
+  successGetFragment.append(success);
+  body.append(success);
+};
 
 export {
   getRandomInteger,
   createRandomIdFromRangeGenerator,
   isEscapeKey,
+  showAlertSend,
+  showAlertGet,
+  showSuccessSend,
+  savePhotos,
+  photos
 };

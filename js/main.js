@@ -4,5 +4,19 @@ import {
 
 import {loadImage} from './form.js';
 
-renderPhotos();
+import {getData} from './api.js';
+import {showAlertGet} from './util.js';
+
+
+getData()
+  .then((pictures) => {
+    renderPhotos(pictures);
+  })
+  .catch(
+    () => {
+      showAlertGet();
+    }
+  );
+
+// renderPhotos();
 loadImage();

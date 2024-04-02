@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util';
 import { body } from './open-picture';
-import { onFormSubmit } from './validate';
+import { onFormSubmit, setUserFormSubmit } from './validate';
 import {onSmallerBtnclick, onBiggerBtnBtnclick, onFilterChange} from './edit-photo.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
@@ -15,7 +15,6 @@ const commentInput = uploadForm.querySelector('.text__description');
 const smallerBtn = uploadForm.querySelector('.scale__control--smaller');
 const biggerBtn = uploadForm.querySelector('.scale__control--bigger');
 const filters = photoEditorForm.querySelectorAll('[name="effect"]');
-const sliderContainer = photoEditorForm.querySelector('.img-upload__effect-level');
 
 
 const onPhotoEditorResetBtnClick = () => closePhotoEditor();
@@ -35,7 +34,7 @@ const onDocumentKeydown = (evt) => {
 function closePhotoEditor () {
   photoEditorForm.classList.add('hidden');
   body.classList.remove('modal-open');
-  uploadForm.removeEventListener('submit', onFormSubmit);
+  uploadForm.removeEventListener('submit', onFormSubmit, setUserFormSubmit);
   filters.forEach((filter) => {
     filter.removeEventListener('change', onFilterChange);
   });
@@ -50,7 +49,7 @@ export const loadImage = () => {
   upLoadFileControl.addEventListener('change', () => {
     photoEditorForm.classList.remove('hidden');
     body.classList.add('modal-open');
-    uploadForm.addEventListener('submit', onFormSubmit);
+    uploadForm.addEventListener('submit', onFormSubmit, setUserFormSubmit);
     filters.forEach((filter) => {
       filter.addEventListener('change', onFilterChange);
     });

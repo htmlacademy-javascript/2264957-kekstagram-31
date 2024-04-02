@@ -4,10 +4,10 @@ import { showBigPicture } from './open-picture.js';
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const pictures = createPhoto();
+// const pictures = createPhoto();
 const picturesFragment = document.createDocumentFragment();
 
-const renderPhotos = () => {
+const renderPhotos = (pictures) => {
   pictures.forEach(({
     url,
     description,

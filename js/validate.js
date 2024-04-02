@@ -1,11 +1,21 @@
+import { showAlertSend, showSuccessSend, isEscapeKey } from './util';
+import { sendData } from './api.js';
+
 const uploadForm = document.querySelector('.img-upload__form');
 
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
+const submitBtn = uploadForm.querySelector('#upload-submit');
 
 const MAX_COMMENT_LENGTH = 140;
 const MAX_HASHTAG_COUNT = 5;
 const COMMENT_ERROR_MESSAGE = 'Длина комментария больше 140 символов';
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Отправляю...'
+};
+
+let infoModal;
 
 let errorMessage = '';
 
@@ -68,9 +78,49 @@ pristine.addValidator(hashtagInput, isHashtagsValid, error);
 
 pristine.addValidator(commentInput, isCommentValid, COMMENT_ERROR_MESSAGE);
 
+const blockSubmitButton = () => {
+  submitBtn.disabled = true;
+  submitBtn.textContent = SubmitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitBtn.disabled = false;
+  submitBtn.textContent = SubmitButtonText.IDLE;
+};
+
+const onDocumentKeydown = () => {
+  if (isEscapeKey) {
+    closeInfoModal();
+  }
+};
+
+function closeInfoModal() {
+  infoModal.remove();
+  document.removeEventListener('keydown', onDocumentKeydown);
+}
+
+const setUserFormSubmit = (onSuccess) => {
+  uploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValidate = pristine.validate();
+    if (isValidate) {
+      blockSubmitButton();
+      sendData(new FormData(evt.target)).then(onSuccess).then(() => {
+        showSuccessSend();
+      })
+        .catch(() => {
+          showAlertSend();
+        })
+        .finally(() => {
+          unblockSubmitButton();
+        });
+    }
+  });
+};
+
 const onFormSubmit = (evt) => {
   evt.prevenrDefolt();
   pristine.validate();
 };
 
-export {onFormSubmit};
+export {onFormSubmit, setUserFormSubmit};
