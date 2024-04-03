@@ -57,7 +57,7 @@ const showAlertSend = () => {
 
   errorBtn.addEventListener('click', onErrorButtonClick);
   document.addEventListener('click', onErrorDocumentClick);
-  document.addEventListener('keydown', onEventKeydown);
+  document.addEventListener('keydown', onErrorKeydown);
 
   setTimeout(() => {
     error.remove();
@@ -91,24 +91,30 @@ const showSuccessSend = () => {
 
   successBtn.addEventListener('click', onSuccessButtonClick);
   document.addEventListener('click', onSuccessDocumentClick);
-  document.addEventListener('keydown', onEventKeydown);
+  document.addEventListener('keydown', onSuccessKeydown);
 };
 
 const closeSuccesSend = () => {
   document.body.removeChild(success);
   document.removeEventListener('click', onSuccessDocumentClick);
-  document.removeEventListener('keydown', onEventKeydown);
+  document.removeEventListener('keydown', onSuccessKeydown);
 };
 
 const closeError = () => {
   document.body.removeChild(error);
   document.removeEventListener('click', onErrorDocumentClick);
-  document.removeEventListener('keydown', onEventKeydown);
+  document.removeEventListener('keydown', onErrorKeydown);
 };
 
-function onEventKeydown (evt) {
+function onSuccessKeydown (evt) {
   if (isEscapeKey(evt)) {
     closeSuccesSend();
+  }
+}
+
+function onErrorKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    closeError();
   }
 }
 
