@@ -118,9 +118,9 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-const onFormSubmit = (evt) => {
-  evt.prevenrDefolt();
-  pristine.validate();
-};
+// const onFormSubmit = (evt) => {
+//   evt.prevenrDefolt();
+//   pristine.validate();
+// };
 
-export {onFormSubmit, setUserFormSubmit};
+export {setUserFormSubmit};

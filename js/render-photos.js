@@ -1,4 +1,4 @@
-import { createPhoto } from './create-miniatures.js';
+// import { createPhoto } from './create-miniatures.js';
 import { showBigPicture } from './open-picture.js';
 
 const picturesList = document.querySelector('.pictures');

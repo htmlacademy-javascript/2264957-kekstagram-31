@@ -23,7 +23,7 @@ const load = (route, method = Method.GET, body = null) =>
       return response.json();
     });
 
-const getData = () => load(Route.GET_DATA, ErrorText.GET_DATA);
+const getData = () => load(Route.GET_DATA, Method.GET);
 
 const sendData = (body) => load (Route.SEND_DATA, ErrorText.SEND_DATA, Method.POST, body);
 

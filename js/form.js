@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util';
 import { body } from './open-picture';
-import { onFormSubmit, setUserFormSubmit } from './validate';
+import { setUserFormSubmit } from './validate';
 import {onSmallerBtnclick, onBiggerBtnBtnclick, onFilterChange} from './edit-photo.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
@@ -34,7 +34,7 @@ const onDocumentKeydown = (evt) => {
 function closePhotoEditor () {
   photoEditorForm.classList.add('hidden');
   body.classList.remove('modal-open');
-  uploadForm.removeEventListener('submit', onFormSubmit, setUserFormSubmit);
+  uploadForm.removeEventListener('submit', setUserFormSubmit);
   filters.forEach((filter) => {
     filter.removeEventListener('change', onFilterChange);
   });
@@ -49,7 +49,7 @@ export const loadImage = () => {
   upLoadFileControl.addEventListener('change', () => {
     photoEditorForm.classList.remove('hidden');
     body.classList.add('modal-open');
-    uploadForm.addEventListener('submit', onFormSubmit, setUserFormSubmit);
+    uploadForm.addEventListener('submit', setUserFormSubmit);
     filters.forEach((filter) => {
       filter.addEventListener('change', onFilterChange);
     });
