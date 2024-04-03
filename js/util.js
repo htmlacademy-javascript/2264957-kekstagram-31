@@ -10,6 +10,8 @@ const successGetTemplate = document.querySelector('#success').content.querySelec
 const successGetFragment = document.createDocumentFragment();
 const ALERT_SHOWTIME = 5000;
 let photos = [];
+let success;
+let error;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -42,15 +44,30 @@ const savePhotos = (photosArrey) => {
   photos = photosArrey;
 };
 
+const onErrorButtonClick = () => {
+  document.body.removeChild(error);
+};
+
 const showAlertSend = () => {
-  const error = errorSendTemplate.cloneNode(true);
+  error = errorSendTemplate.cloneNode(true);
+  const errorBtn = error.querySelector('.error__button');
 
   errorSendFragment.append(error);
   body.append(errorSendFragment);
+
+  errorBtn.addEventListener('click', onErrorButtonClick);
+  document.addEventListener('click', onErrorDocumentClick);
+  document.addEventListener('keydown', onEventKeydown);
+
+  setTimeout(() => {
+    error.remove();
+  }, ALERT_SHOWTIME);
+
 };
 
+
 const showAlertGet = () => {
-  const error = errorGetTemplate.cloneNode(true);
+  error = errorGetTemplate.cloneNode(true);
 
   errorGetFragment.append(error);
   body.append(errorSendFragment);
@@ -60,12 +77,52 @@ const showAlertGet = () => {
   }, ALERT_SHOWTIME);
 };
 
+const onSuccessButtonClick = () => {
+  document.body.removeChild(success);
+};
+
+
 const showSuccessSend = () => {
-  const success = successGetTemplate.cloneNode(true);
+  success = successGetTemplate.cloneNode(true);
+  const successBtn = success.querySelector('.success__button');
 
   successGetFragment.append(success);
   body.append(success);
+
+  successBtn.addEventListener('click', onSuccessButtonClick);
+  document.addEventListener('click', onSuccessDocumentClick);
+  document.addEventListener('keydown', onEventKeydown);
 };
+
+const closeSuccesSend = () => {
+  document.body.removeChild(success);
+  document.removeEventListener('click', onSuccessDocumentClick);
+  document.removeEventListener('keydown', onEventKeydown);
+};
+
+const closeError = () => {
+  document.body.removeChild(error);
+  document.removeEventListener('click', onErrorDocumentClick);
+  document.removeEventListener('keydown', onEventKeydown);
+};
+
+function onEventKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    closeSuccesSend();
+  }
+}
+
+function onSuccessDocumentClick (evt) {
+  if (evt.target === success) {
+    closeSuccesSend();
+  }
+}
+
+function onErrorDocumentClick (evt) {
+  if (evt.target === error) {
+    closeError();
+  }
+}
 
 export {
   getRandomInteger,

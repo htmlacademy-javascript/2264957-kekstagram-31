@@ -49,7 +49,7 @@ export const loadImage = () => {
   upLoadFileControl.addEventListener('change', () => {
     photoEditorForm.classList.remove('hidden');
     body.classList.add('modal-open');
-    uploadForm.addEventListener('submit', setUserFormSubmit);
+    setUserFormSubmit(closePhotoEditor);
     filters.forEach((filter) => {
       filter.addEventListener('change', onFilterChange);
     });
