@@ -66,9 +66,9 @@ const showAlertSend = () => {
 };
 
 
-const showAlertGet = () => {
+const showAlertGet = (errorText) => {
   error = errorGetTemplate.cloneNode(true);
-
+  error.textContent = errorText;
   errorGetFragment.append(error);
   body.append(errorSendFragment);
 

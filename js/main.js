@@ -6,6 +6,8 @@ import {loadImage} from './form.js';
 
 import {getData} from './api.js';
 import {showAlertGet} from './util.js';
+import { setUserFormSubmit } from './validate';
+import { closePhotoEditor } from './form.js';
 
 
 getData()
@@ -14,9 +16,10 @@ getData()
   })
   .catch(
     () => {
-      showAlertGet();
+      showAlertGet('Не удалось загрузить данные');
     }
   );
 
 // renderPhotos();
 loadImage();
+setUserFormSubmit(closePhotoEditor);

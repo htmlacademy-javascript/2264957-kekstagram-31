@@ -87,22 +87,6 @@ const unblockSubmitButton = () => {
   submitBtn.textContent = SubmitButtonText.IDLE;
 };
 
-// const onDocumentKeydown = () => {
-//   if (isEscapeKey) {
-//     closeInfoModal();
-//   }
-// };
-
-// function closeInfoModal() {
-//   infoModal.remove();
-//   document.removeEventListener('keydown', onDocumentKeydown);
-// }
-
-// function onSuccessDocumentClick (evt) {
-//   if (evt.target === successElement) {
-//     closeSuccess();
-//   }
-// };
 
 const setUserFormSubmit = (onSuccess) => {
   uploadForm.addEventListener('submit', (evt) => {
@@ -123,9 +107,5 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-// const onFormSubmit = (evt) => {
-//   evt.prevenrDefolt();
-//   pristine.validate();
-// };
 
 export {setUserFormSubmit};
