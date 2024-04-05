@@ -70,7 +70,7 @@ const showAlertGet = (errorText) => {
   error = errorGetTemplate.cloneNode(true);
   error.textContent = errorText;
   errorGetFragment.append(error);
-  body.append(errorSendFragment);
+  body.append(error);
 
   setTimeout(() => {
     error.remove();
