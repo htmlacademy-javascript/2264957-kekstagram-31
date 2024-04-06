@@ -1,6 +1,4 @@
-import {
-  body
-} from './open-picture';
+import { body } from './open-picture';
 
 const errorSendTemplate = document.querySelector('#error').content.querySelector('.error');
 const errorSendFragment = document.createDocumentFragment();
@@ -130,6 +128,15 @@ function onErrorDocumentClick (evt) {
   }
 }
 
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 export {
   getRandomInteger,
   createRandomIdFromRangeGenerator,
@@ -138,5 +145,6 @@ export {
   showAlertGet,
   showSuccessSend,
   savePhotos,
-  photos
+  photos,
+  debounce
 };
