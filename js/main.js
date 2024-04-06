@@ -4,5 +4,22 @@ import {
 
 import {loadImage} from './form.js';
 
-renderPhotos();
+import {getData} from './api.js';
+import {showAlertGet} from './util.js';
+import { setUserFormSubmit } from './validate';
+import { closePhotoEditor } from './form.js';
+
+
+getData()
+  .then((pictures) => {
+    renderPhotos(pictures);
+  })
+  .catch(
+    () => {
+      showAlertGet('Не удалось загрузить данные');
+    }
+  );
+
+// renderPhotos();
 loadImage();
+setUserFormSubmit(closePhotoEditor);
