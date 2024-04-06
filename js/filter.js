@@ -12,7 +12,7 @@ let currentFilter = 'filter-default';
 
 let pictures = [];
 
-const debounceRender = debounce(renderPhotos);
+const debounceRender = debounce(renderPhotos, 500);
 
 const RANDOM_PICTURE_COUNT = 10;
 
@@ -37,17 +37,18 @@ function onFilterSort(evt) {
 
 function applyFilter () {
   let filterPictures = [];
-  if (currentFilter === filterDefolt) {
+  if (currentFilter === filterDefolt.getAttribute('id')) {
     filterPictures = pictures;
   }
 
-  if (currentFilter === filterRandom) {
+  if (currentFilter === filterRandom.getAttribute('id')) {
     filterPictures = pictures.toSorted(() => 0.5 - Math.random()).slice(0, RANDOM_PICTURE_COUNT);
   }
 
-  if (currentFilter === filterDiscussed) {
-    filterPictures = pictures.toSorted((a, b) => b.comments.lenght - a.comments.lenght);
+  if (currentFilter === filterDiscussed.getAttribute('id')) {
+    filterPictures = pictures.toSorted((a, b) => b.comments.length - a.comments.length);
   }
+  clearPhotos();
   debounceRender(filterPictures);
 }
 

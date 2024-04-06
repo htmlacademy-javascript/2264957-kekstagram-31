@@ -10,7 +10,7 @@ import { configFilter } from './filter.js';
 getData()
   .then((pictures) => {
     renderPhotos(pictures);
-    configFilter(picturesData);
+    configFilter(pictures);
   })
   .catch(
     () => {

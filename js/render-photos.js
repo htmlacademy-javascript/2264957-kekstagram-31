@@ -7,12 +7,10 @@ const pictureTemplate = document.querySelector('#picture').content.querySelector
 // const pictures = createPhoto();
 const picturesFragment = document.createDocumentFragment();
 
-const clearPhotos = () => {
-  picturesList.querySelectorAll('.pictures').forEach((item) => item.remove());
-};
+const clearPhotos = () => picturesList.querySelectorAll('.picture').forEach((item) => item.remove());
+
 
 const renderPhotos = (pictures) => {
-  clearPhotos();
   pictures.forEach(({
     url,
     description,
@@ -35,8 +33,6 @@ const renderPhotos = (pictures) => {
 
   picturesList.append(picturesFragment);
 };
-
-
 
 
 export { renderPhotos, clearPhotos };
