@@ -25,6 +25,7 @@ const biggerBtn = uploadForm.querySelector('.scale__control--bigger');
 const filters = photoEditorForm.querySelectorAll('[name="effect"]');
 
 const uploadPreview = uploadForm.querySelector('.img-upload__preview img');
+const uploadPreviewEffect = document.querySelectorAll('.effects__preview');
 
 
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
@@ -57,6 +58,7 @@ function closePhotoEditor() {
   upLoadFileControl.value = '';
 }
 
+
 export const loadImage = () => {
   upLoadFileControl.addEventListener('change', () => {
     const file = uploadInput.files[0];
@@ -69,6 +71,9 @@ export const loadImage = () => {
       uploadPreview.src = url;
       photoEditorForm.classList.remove('hidden');
       body.classList.add('modal-open');
+      uploadPreviewEffect.forEach((item) => {
+        item.style.backgroundImage = `url(${url})`;
+      });
       filters.forEach((filter) => {
         filter.addEventListener('change', onFilterChange);
       });
