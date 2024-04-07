@@ -25,7 +25,6 @@ const biggerBtn = uploadForm.querySelector('.scale__control--bigger');
 const filters = photoEditorForm.querySelectorAll('[name="effect"]');
 
 const uploadPreview = uploadForm.querySelector('.img-upload__preview img');
-const uploadPreviewEffect = document.querySelectorAll('.effects__preview');
 
 
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
