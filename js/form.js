@@ -71,10 +71,10 @@ export const loadImage = () => {
       uploadPreview.src = url;
       photoEditorForm.classList.remove('hidden');
       body.classList.add('modal-open');
-      uploadPreviewEffect.forEach((item) => {
-        item.style.backgroundImage = `url(${url})`;
-      });
       filters.forEach((filter) => {
+        filter.parentNode.querySelector(
+          '.effects__preview'
+        ).style.backgroundImage = `url(${url})`;
         filter.addEventListener('change', onFilterChange);
       });
       photoEditorResetBtn.addEventListener('click', onPhotoEditorResetBtnClick);
