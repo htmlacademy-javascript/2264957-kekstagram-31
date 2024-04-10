@@ -72,12 +72,12 @@ const closeBigPicture = () => {
   commentsLoad.removeEventListener('click', renderPictureComments);
 };
 
-const onPictureEscapeKeyDown = (evt) => {
+function onPictureEscapeKeyDown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPicture();
   }
-};
+}
 
 const showBigPicture = ({
   url,
