@@ -84,7 +84,7 @@ const resetNoUiSlider = () => {
   photoImage.style.transform = 'scale(1)';
 };
 
-function onFilterChange () {
+function onFilterChange() {
   if (this.value !== 'none') {
     sliderContainer.classList.remove('hidden');
 
@@ -107,5 +107,9 @@ function onFilterChange () {
   }
 }
 
-export {onSmallerBtnclick, onBiggerBtnBtnclick, onFilterChange, resetNoUiSlider};
-
+export {
+  onSmallerBtnclick,
+  onBiggerBtnBtnclick,
+  onFilterChange,
+  resetNoUiSlider
+};

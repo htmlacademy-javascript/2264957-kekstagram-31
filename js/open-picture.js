@@ -1,5 +1,6 @@
-
-import { isEscapeKey } from './util.js';
+import {
+  isEscapeKey
+} from './util.js';
 
 const userModalPicture = document.querySelector('.big-picture');
 const userModalClosePicture = userModalPicture.querySelector('.big-picture__cancel');
@@ -25,7 +26,11 @@ const renderPictureComments = () => {
   commentsForRender = currentComments.slice(startCommentsCount, startCommentsCount + MIN_SHOW_COMMENTS);
   startCommentsCount += MIN_SHOW_COMMENTS;
   const commentsFragment = document.createDocumentFragment();
-  commentsForRender.forEach(({ avatar, message, name }) => {
+  commentsForRender.forEach(({
+    avatar,
+    message,
+    name
+  }) => {
     const comment = commentTemplate.cloneNode(true);
     comment.querySelector('.social__picture').src = avatar;
     comment.querySelector('.social__picture').alt = name;
@@ -40,7 +45,12 @@ const renderPictureComments = () => {
 };
 
 
-const renderBigPicture = ({url, description, likes, comments }) => {
+const renderBigPicture = ({
+  url,
+  description,
+  likes,
+  comments
+}) => {
   userModalPicture.querySelector('.big-picture__img').querySelector('img').src = url;
   userModalPicture.querySelector('.big-picture__img').querySelector('img').alt = description;
   userModalPicture.querySelector('.likes-count').textContent = likes;
@@ -69,13 +79,27 @@ const onPictureEscapeKeyDown = (evt) => {
   }
 };
 
-const showBigPicture = ({url, description, likes, comments }) => {
+const showBigPicture = ({
+  url,
+  description,
+  likes,
+  comments
+}) => {
   userModalPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPictureEscapeKeyDown);
-  renderBigPicture ({url, description, likes, comments });
+  renderBigPicture({
+    url,
+    description,
+    likes,
+    comments
+  });
   userModalClosePicture.addEventListener('click', closeBigPicture);
 };
 
 
-export { showBigPicture, closeBigPicture, body };
+export {
+  showBigPicture,
+  closeBigPicture,
+  body
+};
