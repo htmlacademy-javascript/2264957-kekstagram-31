@@ -56,7 +56,7 @@ function closePhotoEditor() {
   biggerBtn.removeEventListener('click', onBiggerBtnBtnclick);
   upLoadFileControl.value = '';
   uploadForm.reset();
-  document.querySelectorAll(".img-upload__field-wrapper--error").forEach((item) => {
+  document.querySelectorAll('.img-upload__field-wrapper--error').forEach((item) => {
     item.remove();
   });
   resetNoUiSlider();
