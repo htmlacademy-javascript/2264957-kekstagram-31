@@ -35,7 +35,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 };
 
 const isEscapeKey = (evt) => {
-  return evt.key === 'Escape'
+  return evt.key === 'Escape';
 };
 
 const savePhotos = (photosArrey) => {

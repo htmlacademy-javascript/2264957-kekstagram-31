@@ -1,4 +1,4 @@
-import { showAlertSend, showSuccessSend, isEscapeKey } from './util';
+import { showAlertSend, showSuccessSend} from './util';
 import { sendData } from './api.js';
 
 const uploadForm = document.querySelector('.img-upload__form');

@@ -9,12 +9,13 @@ const slider = photoEditorForm.querySelector('.effect-level__slider');
 
 let scale = 1;
 const SCALE_STEP = 0.25;
+const SCALE_PERCENT = 100;
 
 const onSmallerBtnclick = () => {
   if (scale > SCALE_STEP) {
     scale -= SCALE_STEP;
     photoImage.style.transform = `scale(${scale})`;
-    scaleControl.value = `${scale * 100}%`;
+    scaleControl.value = `${scale * SCALE_PERCENT}%`;
   }
 };
 
@@ -22,7 +23,7 @@ const onBiggerBtnBtnclick = () => {
   if (scale < 1) {
     scale += SCALE_STEP;
     photoImage.style.transform = `scale(${scale})`;
-    scaleControl.value = `${scale * 100}%`;
+    scaleControl.value = `${scale * SCALE_PERCENT}%`;
   }
 };
 
@@ -77,6 +78,12 @@ const FILTERS_VALUE = {
 };
 
 
+const resetNoUiSlider = () => {
+  sliderContainer.classList.add('hidden');
+  photoImage.style.filter = '';
+  photoImage.style.transform = 'scale(1)';
+};
+
 function onFilterChange () {
   if (this.value !== 'none') {
     sliderContainer.classList.remove('hidden');
@@ -100,5 +107,5 @@ function onFilterChange () {
   }
 }
 
-export {onSmallerBtnclick, onBiggerBtnBtnclick, onFilterChange};
+export {onSmallerBtnclick, onBiggerBtnBtnclick, onFilterChange, resetNoUiSlider};
 
