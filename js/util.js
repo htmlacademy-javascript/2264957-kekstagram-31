@@ -1,4 +1,6 @@
-import { body } from './open-picture';
+import {
+  body
+} from './open-picture';
 
 const errorSendTemplate = document.querySelector('#error').content.querySelector('.error');
 const errorSendFragment = document.createDocumentFragment();
@@ -35,7 +37,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 };
 
 const isEscapeKey = (evt) => {
-  return evt.key === 'Escape'
+  return evt.key === 'Escape';
 };
 
 const savePhotos = (photosArrey) => {
@@ -104,25 +106,25 @@ const closeError = () => {
   document.removeEventListener('keydown', onErrorKeydown);
 };
 
-function onSuccessKeydown (evt) {
+function onSuccessKeydown(evt) {
   if (isEscapeKey(evt)) {
     closeSuccesSend();
   }
 }
 
-function onErrorKeydown (evt) {
+function onErrorKeydown(evt) {
   if (isEscapeKey(evt)) {
     closeError();
   }
 }
 
-function onSuccessDocumentClick (evt) {
+function onSuccessDocumentClick(evt) {
   if (evt.target === success) {
     closeSuccesSend();
   }
 }
 
-function onErrorDocumentClick (evt) {
+function onErrorDocumentClick(evt) {
   if (evt.target === error) {
     closeError();
   }

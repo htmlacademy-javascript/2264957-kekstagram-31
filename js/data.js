@@ -1,4 +1,3 @@
-
 const getData = () => {
   const DESCRIPTIONS = [
     'Лето',
@@ -44,8 +43,14 @@ const getData = () => {
     'Рита',
   ];
 
-  return{DESCRIPTIONS, COMMENTS, NAMES};
+  return {
+    DESCRIPTIONS,
+    COMMENTS,
+    NAMES
+  };
 };
 
 
-export {getData};
+export {
+  getData
+};

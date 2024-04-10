@@ -1,8 +1,17 @@
-import {getRandomInteger, createRandomIdFromRangeGenerator} from './util.js';
-import {getData} from './data.js';
+import {
+  getRandomInteger,
+  createRandomIdFromRangeGenerator
+} from './util.js';
+import {
+  getData
+} from './data.js';
 
 const OBJECT_COUNT = 25;
-const {DESCRIPTIONS, COMMENTS, NAMES} = getData();
+const {
+  DESCRIPTIONS,
+  COMMENTS,
+  NAMES
+} = getData();
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 const getPhotoID = createRandomIdFromRangeGenerator(1, 26);
@@ -22,9 +31,16 @@ const createPhotoDescription = () => ({
   url: `photos/${ getNumberPhoto() }.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
-  comments: Array.from({length: getRandomInteger(0, 30)}, createComments)
+  comments: Array.from({
+    length: getRandomInteger(0, 30)
+  }, createComments)
 });
 
-const createPhoto = () => Array.from({length: OBJECT_COUNT}, createPhotoDescription);
+const createPhoto = () => Array.from({
+  length: OBJECT_COUNT
+}, createPhotoDescription);
 
-export {createPhoto, createComments };
+export {
+  createPhoto,
+  createComments
+};

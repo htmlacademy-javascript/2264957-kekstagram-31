@@ -1,5 +1,10 @@
-import {renderPhotos, clearPhotos} from './render-photos.js';
-import { debounce } from './util.js';
+import {
+  renderPhotos,
+  clearPhotos
+} from './render-photos.js';
+import {
+  debounce
+} from './util.js';
 
 const filters = document.querySelector('.img-filters');
 const filtersForm = filters.querySelector('.img-filters__form');
@@ -19,12 +24,12 @@ const RANDOM_PICTURE_COUNT = 10;
 function onFilterSort(evt) {
   const targetButton = evt.target;
   const activeButton = document.querySelector(`.${ACTIVE_BUTTON_CLASS}`);
-  if(!targetButton.matches('button')) {
+  if (!targetButton.matches('button')) {
     return;
   }
 
 
-  if(activeButton === targetButton) {
+  if (activeButton === targetButton) {
     return;
   }
 
@@ -35,7 +40,7 @@ function onFilterSort(evt) {
   applyFilter();
 }
 
-function applyFilter () {
+function applyFilter() {
   let filterPictures = [];
   if (currentFilter === filterDefolt.getAttribute('id')) {
     filterPictures = pictures;
@@ -58,4 +63,6 @@ function configFilter(picturesData) {
   pictures = picturesData;
 }
 
-export { configFilter };
+export {
+  configFilter
+};

@@ -7,7 +7,8 @@ import {
 import {
   onSmallerBtnclick,
   onBiggerBtnBtnclick,
-  onFilterChange
+  onFilterChange,
+  resetNoUiSlider
 } from './edit-photo.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
@@ -33,12 +34,11 @@ const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const onPhotoEditorResetBtnClick = () => closePhotoEditor();
 
 const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefolt();
+  if (isEscapeKey(evt) && !document.querySelector('.error')) {
+    evt.preventDefault();
     if (document.activeElement === hashtagInput || document.activeElement === commentInput) {
       evt.stopPropagation();
     } else {
-      uploadForm.reset();
       closePhotoEditor();
     }
   }
@@ -55,6 +55,11 @@ function closePhotoEditor() {
   smallerBtn.removeEventListener('click', onSmallerBtnclick);
   biggerBtn.removeEventListener('click', onBiggerBtnBtnclick);
   upLoadFileControl.value = '';
+  uploadForm.reset();
+  document.querySelectorAll(".img-upload__field-wrapper--error").forEach((item) => {
+    item.remove();
+  });
+  resetNoUiSlider();
 }
 
 
@@ -68,6 +73,7 @@ export const loadImage = () => {
     if (matches) {
       const url = URL.createObjectURL(file);
       uploadPreview.src = url;
+      document.addEventListener('keydown', onDocumentKeydown);
       photoEditorForm.classList.remove('hidden');
       body.classList.add('modal-open');
       filters.forEach((filter) => {

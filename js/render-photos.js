@@ -1,10 +1,10 @@
-// import { createPhoto } from './create-miniatures.js';
-import { showBigPicture } from './open-picture.js';
+import {
+  showBigPicture
+} from './open-picture.js';
 
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-// const pictures = createPhoto();
 const picturesFragment = document.createDocumentFragment();
 
 const clearPhotos = () => picturesList.querySelectorAll('.picture').forEach((item) => item.remove());
@@ -25,7 +25,12 @@ const renderPhotos = (pictures) => {
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
     pictureElement.addEventListener('click', () => {
-      showBigPicture({url, description, likes, comments });
+      showBigPicture({
+        url,
+        description,
+        likes,
+        comments
+      });
     });
 
     picturesFragment.append(pictureElement);
@@ -35,4 +40,7 @@ const renderPhotos = (pictures) => {
 };
 
 
-export { renderPhotos, clearPhotos };
+export {
+  renderPhotos,
+  clearPhotos
+};
