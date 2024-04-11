@@ -25,7 +25,7 @@ const pristine = new Pristine(uploadForm, {
   errorTextTag: 'div',
 });
 
-const error = () => errorMessage;
+const getError = () => errorMessage;
 
 const isHashtagsValid = (value) => {
   errorMessage = '';
@@ -73,7 +73,7 @@ const isHashtagsValid = (value) => {
 const isCommentValid = (value) => value.length <= MAX_COMMENT_LENGTH;
 
 
-pristine.addValidator(hashtagInput, isHashtagsValid, error);
+pristine.addValidator(hashtagInput, isHashtagsValid, getError);
 
 pristine.addValidator(commentInput, isCommentValid, COMMENT_ERROR_MESSAGE);
 

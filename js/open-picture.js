@@ -10,6 +10,7 @@ const commentSection = userModalPicture.querySelector('.social__comments');
 const commentsShowCount = userModalPicture.querySelector('.social__comment-shown-count');
 const commentsTotalCount = userModalPicture.querySelector('.social__comment-total-count');
 const commentsLoad = userModalPicture.querySelector('.comments-loader');
+const pictureImg = userModalPicture.querySelector('.big-picture__img').querySelector('img');
 const MIN_SHOW_COMMENTS = 5;
 let currentComments = [];
 let startCommentsCount = 0;
@@ -32,8 +33,9 @@ const renderPictureComments = () => {
     name
   }) => {
     const comment = commentTemplate.cloneNode(true);
-    comment.querySelector('.social__picture').src = avatar;
-    comment.querySelector('.social__picture').alt = name;
+    const socialPicture = comment.querySelector('.social__picture');
+    socialPicture.src = avatar;
+    socialPicture.alt = name;
     comment.querySelector('.social__text').textContent = message;
     commentsFragment.append(comment);
   });
@@ -51,8 +53,8 @@ const renderBigPicture = ({
   likes,
   comments
 }) => {
-  userModalPicture.querySelector('.big-picture__img').querySelector('img').src = url;
-  userModalPicture.querySelector('.big-picture__img').querySelector('img').alt = description;
+  pictureImg.src = url;
+  pictureImg.alt = description;
   userModalPicture.querySelector('.likes-count').textContent = likes;
   userModalPicture.querySelector('.social__caption').textContent = description;
   commentsTotalCount.textContent = comments.length;
