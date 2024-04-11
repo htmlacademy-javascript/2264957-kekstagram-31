@@ -12,12 +12,13 @@ const filterDefolt = filtersForm.querySelector('#filter-default');
 const filterRandom = filtersForm.querySelector('#filter-random');
 const filterDiscussed = filtersForm.querySelector('#filter-discussed');
 const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
+const timeoutDelay = 500;
 let currentFilter = 'filter-default';
 
 
 let pictures = [];
 
-const debounceRender = debounce(renderPhotos, 500);
+const debounceRender = debounce(renderPhotos, timeoutDelay);
 
 const RANDOM_PICTURE_COUNT = 10;
 
